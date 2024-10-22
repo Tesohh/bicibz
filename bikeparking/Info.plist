@@ -6,5 +6,8 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+    
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Abbiamo bisogno della tua posizione per mostrare i parcheggi vicino a te</string>
 </dict>
 </plist>

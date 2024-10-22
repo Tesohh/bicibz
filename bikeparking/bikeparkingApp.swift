@@ -12,7 +12,7 @@ import SwiftData
 struct bikeparkingApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            ParkingSpot.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,7 +25,7 @@ struct bikeparkingApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MapView()
         }
         .modelContainer(sharedModelContainer)
     }
