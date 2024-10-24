@@ -11,6 +11,10 @@ func mapValue(_ value: Float, fromRange: ClosedRange<Float>, toRange: ClosedRang
     return toRange.lowerBound + (proportion * (toRange.upperBound - toRange.lowerBound))
 }
 
+func uint8ToStars(_ value: UInt8) -> Double {
+    return Double(mapValue(Float(value), fromRange: 0...255, toRange: 0...5))
+}
+
 
 struct ParkingSpotRating: Codable {
     // security

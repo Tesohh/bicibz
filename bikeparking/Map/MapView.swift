@@ -34,7 +34,7 @@ struct MapView: View {
         }
         .sheet(item: $selectedSpot) { spot in
             ParkingSpotDetail(spot: spot)
-            .presentationDetents([.height(150)])
+                .presentationDetents([.medium])
         }
         .onAppear {
             locationManager.checkLocationAuthorization()

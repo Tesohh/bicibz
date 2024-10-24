@@ -33,18 +33,18 @@ final class ParkingSpot {
     }
     
     func averageSecurityScore() -> UInt8 {
-        let totalSecurityScore = self.ratings.reduce(0) { sum, rating in sum + Int(rating.securityScore()) }
-        return UInt8(mapValue(Float(totalSecurityScore), fromRange: 0...Float(Int.max), toRange: 0...255))
+        var totalSecurityScore = self.ratings.reduce(0) { sum, rating in sum + Int(rating.securityScore()) }
+        return UInt8(totalSecurityScore / self.ratings.count)
     }
     
     func averageConvenienceScore() -> UInt8 {
         let totalConvenienceScore = self.ratings.reduce(0) { sum, rating in sum + Int(rating.convenienceScore()) }
-        return UInt8(mapValue(Float(totalConvenienceScore), fromRange: 0...Float(Int.max), toRange: 0...255))
+        return UInt8(totalConvenienceScore / self.ratings.count)
     }
     
     func averageTotalScore() -> UInt8 {
         let totalScore = self.ratings.reduce(0) { sum, rating in sum + Int(rating.totalScore()) }
-        return UInt8(mapValue(Float(totalScore), fromRange: 0...Float(Int.max), toRange: 0...255))
+        return UInt8(totalScore / self.ratings.count)
     }
 }
 
