@@ -33,7 +33,7 @@ final class ParkingSpot {
     }
     
     func averageSecurityScore() -> UInt8 {
-        var totalSecurityScore = self.ratings.reduce(0) { sum, rating in sum + Int(rating.securityScore()) }
+        let totalSecurityScore = self.ratings.reduce(0) { sum, rating in sum + Int(rating.securityScore()) }
         return UInt8(totalSecurityScore / self.ratings.count)
     }
     

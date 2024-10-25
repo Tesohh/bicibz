@@ -5,6 +5,8 @@
 //  Created by Simone Tesini on 19/10/24.
 //
 
+import Foundation
+
 func mapValue(_ value: Float, fromRange: ClosedRange<Float>, toRange: ClosedRange<Float>) -> Float {
     let clampedValue = min(max(value, fromRange.lowerBound), fromRange.upperBound)
     let proportion = (clampedValue - fromRange.lowerBound) / (fromRange.upperBound - fromRange.lowerBound)
@@ -15,18 +17,17 @@ func uint8ToStars(_ value: UInt8) -> Double {
     return Double(mapValue(Float(value), fromRange: 0...255, toRange: 0...5))
 }
 
-
 struct ParkingSpotRating: Codable {
     // security
-    let fenced: Bool
-    let crowded: Bool
-    let surveilled: Bool
-    let lowCrimeRate: UInt8
+    var fenced: Bool
+    var crowded: Bool
+    var surveilled: Bool
+    var lowCrimeRate: UInt8
     
     // convenience
-    let quality: UInt8
-    let capacity: UInt8
-    let locationQuality: UInt8
+    var quality: UInt8
+    var capacity: UInt8
+    var locationQuality: UInt8
     
     // 51 roughly equals 1 star in uint8
     
@@ -63,4 +64,8 @@ struct ParkingSpotRating: Codable {
         score += UInt8(mapValue(Float(self.convenienceScore()), fromRange: 0...255, toRange: 0...63))
         return score
     }
+}
+
+func NewParkingSpotRating() -> ParkingSpotRating {
+    return ParkingSpotRating(fenced: false, crowded: false, surveilled: false, lowCrimeRate: 51, quality: 51, capacity: 51, locationQuality: 51)
 }

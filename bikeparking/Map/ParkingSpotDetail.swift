@@ -30,7 +30,7 @@ struct ParkingSpotDetail: View {
                                 Text("SICUREZZA")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
-                                StarRatingView(rating: uint8ToStars(spot.averageSecurityScore()))
+//                                StarRatingView(rating: uint8ToStars(spot.averageSecurityScore()))
                             }
                             
                             Divider()
@@ -39,7 +39,7 @@ struct ParkingSpotDetail: View {
                                 Text("COMODITÀ")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
-                                StarRatingView(rating: uint8ToStars(spot.averageConvenienceScore()))
+//                                StarRatingView(rating: uint8ToStars(spot.averageConvenienceScore()))
                             }
                         }.frame(maxWidth: .infinity)
                         
