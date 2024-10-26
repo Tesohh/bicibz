@@ -3,8 +3,8 @@
 - [x] View
     - [x] Map
     - [ ] Map controls
-- [ ] Add "new rating view"
-- [ ] 
+- [x] Add "new rating view"
+- [ ] Integrate new rating view 
 
 # Theft/Spottings
 - [ ] two types: theft, and spotting

@@ -8,20 +8,28 @@
 import SwiftUI
 
 struct NewRatingView: View {
+    @Environment(\.dismiss) private var dismiss
     @State var rating: ParkingSpotRating
     @State var spot: ParkingSpot? = nil
     var title: String = "Nuova valutazione"
+    
+    var isSpotVariable = true
+    
+    var callback: (ParkingSpotRating, ParkingSpot) -> Void = {_, _ in}
+    
     var body: some View {
         NavigationStack {
             Form {
                 Section("Parcheggio") {
-                    
-                NavigationLink(spot == nil ? "Seleziona un parcheggio..." : "\(spot!.title)") {
-                    ParkingSpotPickerView(spots: ParkingSpot.sampleData) { spot in
-                        self.spot = spot
+                    if isSpotVariable {
+                        NavigationLink(spot == nil ? "Seleziona un parcheggio..." : "\(spot!.title)") {
+                            ParkingSpotPickerView(spots: ParkingSpot.sampleData) { spot in
+                                self.spot = spot
+                            }
+                        }
+                    } else {
+                        Text(spot == nil ? "Parcheggio non selezionabile" : "\(spot!.title)")
                     }
-                }
-                    
                 }
                 Section("Sicurezza") {
                     Toggle("Recintata?", isOn: $rating.fenced)
@@ -52,7 +60,9 @@ struct NewRatingView: View {
                     }
                 }
                 Button("Invia") {
-                    print("basta si manda")
+                    guard let spot else {return}
+                    callback(rating, spot)
+                    dismiss()
                 }
             }.navigationTitle("Nuova valutazione")
         }

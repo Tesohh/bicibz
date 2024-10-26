@@ -6,14 +6,19 @@
 //
 
 import SwiftUI
+import SwiftData
 import MapKit
 
 struct ParkingSpotDetail: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var modelContext
     
     @State private var lookaroundScene: MKLookAroundScene?
     
     var spot: ParkingSpot
+    
+    @State private var showingSheet: Bool = false
+    
     var body: some View {
         ScrollView {
             HStack {
@@ -30,20 +35,22 @@ struct ParkingSpotDetail: View {
                                 Text("SICUREZZA")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
-//                                StarRatingView(rating: uint8ToStars(spot.averageSecurityScore()))
+                                StaticStarRatingView(rating: spot.averageSecurityScore())
                             }
                             
-                            Divider()
+                            Divider().padding(.horizontal)
                             
                             VStack(alignment: .leading) {
                                 Text("COMODITÀ")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
-//                                StarRatingView(rating: uint8ToStars(spot.averageConvenienceScore()))
+                                StaticStarRatingView(rating: spot.averageConvenienceScore())
                             }
                         }.frame(maxWidth: .infinity)
                         
-                        Button(action: {}) {
+                        Button(action: {
+                            showingSheet.toggle()
+                        }) {
                             Image(systemName: "plus")
                             Text("valuta anche tu")
                         }
@@ -60,6 +67,16 @@ struct ParkingSpotDetail: View {
         .task(id: spot) {
             print("averages: ", spot.averageSecurityScore(), spot.averageConvenienceScore())
             await fetchScene()
+        }
+        .background(Color(.systemBackground))
+        .sheet(isPresented: $showingSheet) {
+            NewRatingView(rating: NewParkingSpotRating(), spot: spot, isSpotVariable: false) { rating, spot in
+                spot.ratings.append(rating)
+                spot.ratings = spot.ratings
+                try! modelContext.save()
+            }
+                .presentationBackgroundInteraction(.automatic)
+                .presentationBackground(.regularMaterial)
         }
     }
     
