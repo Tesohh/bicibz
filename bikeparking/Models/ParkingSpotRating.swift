@@ -40,7 +40,8 @@ struct ParkingSpotRating: Codable {
         if self.fenced     { score += 32 }
         if self.crowded    { score += 32 }
         if self.surveilled { score += 64 }
-        score += UInt8(mapValue(Float(self.lowCrimeRate), fromRange: 0...255, toRange: 0...128))
+        let maximilian = 255 - score
+        score += min(maximilian, UInt8(mapValue(Float(self.lowCrimeRate), fromRange: 0...255, toRange: 0...128)))
         
         return score
     }
