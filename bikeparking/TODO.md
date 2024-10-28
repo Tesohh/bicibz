@@ -2,14 +2,15 @@
 - [x] define datatypes
 - [x] View
     - [x] Map
-    - [ ] Map controls
+    - [x] Map controls
 - [x] Add "new rating view"
-- [ ] Integrate new rating view 
+- [x] Integrate new rating view 
 
 # Theft/Spottings
-- [ ] two types: theft, and spotting
+- [x] Add safe area inset stuff
+- [x] two types: theft, and spotting
 - [ ] should thefts be reported based on parking spot, or raw locations?
-    - [ ] best of both worlds: you can either do a raw coordinate or a parking spot
+    - [x] best of both worlds: you can either do a raw coordinate or a parking spot
     - [ ] if it's a parking spot, 
         - [ ] it will be displayed nicely in the theft report
         - [ ] adds a theft to the parking spot
@@ -19,6 +20,8 @@
 - [ ] add photo of the bike (hard)
 - [ ] in case of spotting: DON'T show location, show only contact information 
 
+# Tips
+- [ ] Tipss
 
 At the end...
 - [ ] Add all sample data

@@ -20,6 +20,11 @@ struct Coordinates: Codable {
     }
 }
 
+struct BarebonesParkingSpot: Codable {
+    let coords: Coordinates
+    let title: String
+}
+
 @Model
 final class ParkingSpot {
     var coords: Coordinates
@@ -45,6 +50,10 @@ final class ParkingSpot {
     func averageTotalScore() -> UInt8 {
         let totalScore = self.ratings.reduce(0) { sum, rating in sum + Int(rating.totalScore()) }
         return UInt8(totalScore / self.ratings.count)
+    }
+    
+    func bareBones() -> BarebonesParkingSpot {
+        return BarebonesParkingSpot(coords: self.coords, title: self.title)
     }
 }
 

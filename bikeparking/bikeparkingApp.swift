@@ -25,8 +25,12 @@ struct bikeparkingApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MapView()
+            AppView()
         }
         .modelContainer(sharedModelContainer)
     }
+}
+
+#Preview {
+    AppView()
 }
