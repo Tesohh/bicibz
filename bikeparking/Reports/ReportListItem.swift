@@ -12,11 +12,13 @@ struct ReportListItem: View {
     var body: some View {
         NavigationLink(destination: ReportDetailView(report: report)) {
             VStack(alignment: .leading) {
-                Image("examplebike")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 300, height: 100)
-                    .cornerRadius(2)
+                if let image = report.getAppleImage() {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 300, height: 100)
+                        .cornerRadius(2)
+                }               
                 
                 ReportTypeView(report: report)
                 

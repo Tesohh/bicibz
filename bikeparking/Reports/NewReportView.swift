@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct NewReportView: View {
     @Environment(\.dismiss) private var dismiss
     @State var report: Report
+    @State private var selectedPhotoItem: PhotosPickerItem? = nil
+    @State private var selectedImageData: Data? = nil
     
     var title: String = "Nuova segnalazione"
     var callback: (Report) -> Void = {_ in}
@@ -18,19 +21,6 @@ struct NewReportView: View {
         NavigationStack {
             Form {
                 Section {
-//                    Picker(selection: $report.barebonesLocation, label: Text("Tipo di posizione")) {
-//                        Text("Nessuna").tag(BarebonesReportLocation.none)
-//                        Text("Dalla mappa").tag(BarebonesReportLocation.coords)
-//                        Text("Parcheggio").tag(BarebonesReportLocation.spot)
-//                    }
-                    
-//                    if $report.barebonesLocation == .none { }
-//                    else if $report.barebonesLocation == .coords { /* TODO: */ }
-//                    else if $report.barebonesLocation == .spot {
-////
-//                    }
-                    
-                    
                     NavigationLink(report.spot == nil ? "Seleziona un parcheggio..." : "\(report.title())") {
                         ParkingSpotPickerView(spots: ParkingSpot.sampleData) { spot in
                             report.spot = spot
@@ -43,8 +33,36 @@ struct NewReportView: View {
                     
                 }
                 
+                // Image selection section
                 Section {
-                    Text("qui ci andrà la foto...")
+                    if let imageData = selectedImageData, let uiImage = UIImage(data: imageData) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 200)
+                    } else {
+                        Text("Nessuna immagine selezionata")
+                            .frame(height: 200)
+                            .background(Color.gray.opacity(0.3))
+                            .cornerRadius(8)
+                    }
+                    
+                    // PhotosPicker for selecting the image
+                    PhotosPicker(selection: $selectedPhotoItem, matching: .images, photoLibrary: .shared()) {
+                        Text("Seleziona una foto")
+                    }
+                    .onChange(of: selectedPhotoItem) { newItem in
+                        Task {
+                            if let newItem = newItem {
+                                if let data = try? await newItem.loadTransferable(type: Data.self) {
+                                    selectedImageData = data
+                                    report.imageData = data
+                                }
+                            }
+                        }
+                    }
+                } header: {
+                    Text("Immagine")
                 }
                 
                 Section {
@@ -73,34 +91,6 @@ struct NewReportView: View {
                 header: { Text("Contatti") }
                 footer: { Text("campi non obbligatori, ma riempine almeno uno") }
                 
-//                Section("Sicurezza") {
-//                    Toggle("Recintata?", isOn: $rating.fenced)
-//                    Toggle("Zona ad alto traffico?", isOn: $rating.crowded)
-//                    Toggle("Sorvegliata?", isOn: $rating.surveilled)
-//                    HStack {
-//                        Text("Zona poco sospetta")
-//                        Spacer()
-//                        StarRatingView(rating: $rating.lowCrimeRate, starSize: 20, starColor: .orange)
-//                    }
-//                }
-//                
-//                Section("Comodità") {
-//                    HStack {
-//                        Text("Qualità del parcheggio")
-//                        Spacer()
-//                        StarRatingView(rating: $rating.quality, starSize: 20, starColor: .orange)
-//                    }
-//                    HStack {
-//                        Text("Capacità")
-//                        Spacer()
-//                        StarRatingView(rating: $rating.capacity, starSize: 20, starColor: .orange)
-//                    }
-//                    HStack {
-//                        Text("Comodità della zona")
-//                        Spacer()
-//                        StarRatingView(rating: $rating.locationQuality, starSize: 20, starColor: .orange)
-//                    }
-//                }
                 Button("Invia") {
                     callback(report)
                     dismiss()
