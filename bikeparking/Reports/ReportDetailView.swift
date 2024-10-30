@@ -26,6 +26,7 @@ struct ReportDetailView: View {
                             Text("da \(report.fullName ?? "[anonimo]")").foregroundStyle(.secondary)
                         }
                     }
+                    Text("in data \(report.creationDate.formatted())").foregroundStyle(.secondary)
                     Text(report.title())
                 }.padding(.bottom)
                 

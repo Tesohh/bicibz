@@ -13,6 +13,7 @@ struct bikeparkingApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             ParkingSpot.self,
+            Report.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -26,6 +27,7 @@ struct bikeparkingApp: App {
     var body: some Scene {
         WindowGroup {
             AppView()
+                
         }
         .modelContainer(sharedModelContainer)
     }
