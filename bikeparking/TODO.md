@@ -17,8 +17,11 @@
         - [ ] displayed on map as a circle around the spot
     - [ ] if it's a raw coordinate
         - [ ]  displayed on map as a circle around the spot
-- [ ] add photo of the bike (hard)
-- [ ] in case of spotting: DON'T show location, show only contact information 
+- [x] add photo of the bike (hard)
+- [x] in case of spotting: DON'T show location, show only contact information
+- [ ] Show on map
+    - [ ] Add a 1 ParkingSpot to many Reports relationship
+    - [ ] Use that to display thefts count, and a red circle
 
 # Tips
 - [ ] Tipss
