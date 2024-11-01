@@ -8,6 +8,7 @@
 import Foundation
 import SwiftData
 import MapKit
+import SwiftUI
 
 let STAR = UInt8(51)
 
@@ -30,11 +31,13 @@ final class ParkingSpot {
     var coords: Coordinates
     var title: String
     var ratings: [ParkingSpotRating]
+    @Relationship(deleteRule: .nullify, inverse: \Report.spot) var reports: [Report]
     
-    init(coords: Coordinates, title: String? = nil, ratings: [ParkingSpotRating]) {
+    init(coords: Coordinates, title: String? = nil, ratings: [ParkingSpotRating], reports: [Report] = []) {
         self.coords = coords
         self.title = title ?? "Parcheggio"
         self.ratings = ratings
+        self.reports = reports
     }
     
     func averageSecurityScore() -> UInt8 {
@@ -54,6 +57,19 @@ final class ParkingSpot {
     
     func bareBones() -> BarebonesParkingSpot {
         return BarebonesParkingSpot(coords: self.coords, title: self.title)
+    }
+    
+    func color() -> Color {
+        let score = averageTotalScore()
+        print(score)
+        if score <= STAR*2 { return .red }
+        else if score > STAR*2 && score <= STAR*3 {return .orange}
+        else if score > STAR*3 && score <= STAR*5 {return .green}
+        else { return .purple }
+    }
+    
+    func thefts() -> [Report] {
+        return reports.filter({ $0.type == .theft })
     }
 }
 

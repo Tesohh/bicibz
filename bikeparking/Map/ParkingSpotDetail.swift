@@ -29,6 +29,14 @@ struct ParkingSpotDetail: View {
                         Text("\(spot.coords.latitude), \(spot.coords.longitude)")
                     }.foregroundStyle(.secondary)
                     
+                    if spot.thefts().count > 0 {
+                        HStack {
+                            Text("furti qua:")
+                            Text("\(spot.thefts().count)")
+                        }.foregroundStyle(.red)
+                    }
+                        
+                    
                     VStack {
                         HStack() {
                             VStack(alignment: .leading) {

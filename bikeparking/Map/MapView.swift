@@ -20,16 +20,16 @@ struct MapView: View {
     
     var body: some View {
         Map(position: $camera, selection: $selectedSpot) {
-            ForEach(parkingSpots) {spot in
-                Group {
-                    Marker(
-                        spot.title,
-                        systemImage: "bicycle",
-                        coordinate: spot.coords.toAppleCoordinates()
-                    )
-                }
-                .tag(spot)
+            ForEach(parkingSpots) { spot in
+                Marker(spot.title, systemImage: "none", coordinate: spot.coords.toAppleCoordinates())
+                    .tag(spot)
+                    .tint(spot.color())
                 
+                MapCircle(
+                    center: spot.coords.toAppleCoordinates(),
+                    radius: Double(spot.thefts().count) * 10.0
+                )
+                    .foregroundStyle(Color.red.opacity(Double(spot.thefts().count) * 0.3))
             }
         }
         .sheet(item: $selectedSpot) { spot in
@@ -38,9 +38,12 @@ struct MapView: View {
         }
         .onAppear {
             locationManager.checkLocationAuthorization()
-            
+    
             guard parkingSpots.isEmpty else { return }
             for s in ParkingSpot.sampleData {
+                modelContext.insert(s)
+            }
+            for s in Report.sampleData {
                 modelContext.insert(s)
             }
         }
