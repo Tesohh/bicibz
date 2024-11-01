@@ -12,12 +12,14 @@ struct ReportDetailView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                Image("examplebike")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 350)
-                    .cornerRadius(10)
-                    .padding(.bottom)
+                if let image = report.getAppleImage() {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 350)
+                        .cornerRadius(10)
+                        .padding(.bottom)
+                }
                 
                 VStack(alignment: .leading) {
                     HStack {

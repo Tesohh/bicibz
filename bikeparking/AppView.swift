@@ -13,10 +13,10 @@ struct AppView: View {
         TabView {
             MapView()
                 .tabItem { Label("Mappa", systemImage: "map") }
-//                .environment(\.modelContext, modelContext)
             ReportsView()
                 .tabItem { Label("Segnalazioni", systemImage: "bubble.left.and.exclamationmark.bubble.right.fill") }
-//                .environment(\.modelContext, modelContext)
+            TipsView()
+                .tabItem { Label("Consigli", systemImage: "lightbulb") }
         }
     }
 }
