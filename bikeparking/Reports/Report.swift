@@ -89,39 +89,39 @@ final class Report {
 extension Report {
     static var sampleData = [
         Report(
-            spot: ParkingSpot.sampleData[0],
-            type: .found,
+            spot: ParkingSpot.sampleData[2],
+            type: .theft,
             creationDate: Date(timeIntervalSince1970: 1678718040),
-            imageData: UIImage(named: "examplebike")?.jpegData(compressionQuality: 1.0),
-            fullName: "mesini tisone",
-            desc: "ho trovato questa bici mentre andavo a tubre... vero casino",
-            remarks: "presenta uno sticker",
+            imageData: UIImage(named: "bike1")?.jpegData(compressionQuality: 1.0),
+            fullName: "Maximilain Moretti",
+            desc: "aiuto!! mi hanno rubato la bici qua al twenty. Sopra aveva un paio di sticker Pirelli e Ferrari.",
+            remarks: "",
             phoneNumber: "+39 123 456 7890",
-            email: "chiefkeefbestmoments@hotmail.com",
-            facebook: "mesini tisone",
-            instagram: "@dragodelnord"
+            email: "maximilain04@hotmail.com",
+            facebook: "Maximilain",
+            instagram: "@dragoneditubre04"
         ),
         Report(
-            spot: ParkingSpot.sampleData[1],
+            spot: ParkingSpot.sampleData[4],
             type: .theft,
             creationDate: Date(timeIntervalSince1970: 1700404440),
-            imageData: UIImage(named: "examplebike")?.jpegData(compressionQuality: 1.0),
-            fullName: "herris",
-            desc: "stavo battendo uno a suon di proof e nel frattempo mi hanno rubato la bici... disastro...",
-            remarks: "presentava 5 sticker",
+            imageData: UIImage(named: "bike2")?.jpegData(compressionQuality: 1.0),
+            fullName: "Oliver Chioma",
+            desc: "Stavo facendo delle cose in città e quando sono tornato non c'era più.. se vi aiuta a riconoscerla, aveva un graffio abbastanza grande ",
+            remarks: "",
             phoneNumber: "+39 123 456 7890",
-            email: "theproof@zestymail.com"
+            email: "thesandwich@gmail.com"
         ),
         Report(
             spot: ParkingSpot.sampleData[1],
             type: .found,
             creationDate: Date(timeIntervalSince1970: 1696257420),
-            imageData: UIImage(named: "examplebike")?.jpegData(compressionQuality: 1.0),
-            fullName: "tûbarao rainbow6siege",
-            desc: "fra non stavo facendo nulla come il solito, quando ho deciso di andare al despar e ho trovato questa...",
+            imageData: UIImage(named: "bike3")?.jpegData(compressionQuality: 1.0),
+            fullName: "Piero Bress",
+            desc: "Stavo lavorando al NOI e mi hanno rubato la bici!!!!",
             remarks: "nessuno",
             phoneNumber: "+39 123 456 7890",
-            email: "icantstopplayingrainbowsixsiegeandbeinganeet@yahoo.com"
+            email: "bressanoneking@yahoo.com"
         )
     ]
 }	

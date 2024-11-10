@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "image_picker_D9332698-BE05-4F17-8CAF-CBD94136D7E6-778-0000006C9B481083___optimized-bike-ad-images_800_1067.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -27,7 +27,7 @@ struct MapView: View {
                 
                 MapCircle(
                     center: spot.coords.toAppleCoordinates(),
-                    radius: Double(spot.thefts().count) * 10.0
+                    radius: Double(spot.thefts().count) * 30.0
                 )
                     .foregroundStyle(Color.red.opacity(Double(spot.thefts().count) * 0.3))
             }

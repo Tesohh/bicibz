@@ -30,10 +30,11 @@ struct BarebonesParkingSpot: Codable {
 final class ParkingSpot {
     var coords: Coordinates
     var title: String
+    var remarks: String?
     var ratings: [ParkingSpotRating]
     @Relationship(deleteRule: .nullify, inverse: \Report.spot) var reports: [Report]
     
-    init(coords: Coordinates, title: String? = nil, ratings: [ParkingSpotRating], reports: [Report] = []) {
+    init(coords: Coordinates, title: String? = nil, remarks: String? = nil,  ratings: [ParkingSpotRating], reports: [Report] = []) {
         self.coords = coords
         self.title = title ?? "Parcheggio"
         self.ratings = ratings
@@ -75,15 +76,28 @@ final class ParkingSpot {
 
 extension ParkingSpot {
     static var sampleData: [ParkingSpot] = [
-        ParkingSpot(coords: Coordinates(latitude: 46.494372, longitude: 11.332784), title: "vicino al Cissy", ratings: [
-            ParkingSpotRating(fenced: true, crowded: false, surveilled: false, lowCrimeRate: STAR*2, quality: STAR*5, capacity: STAR*3, locationQuality: STAR*5),
-            ParkingSpotRating(fenced: true, crowded: false, surveilled: true, lowCrimeRate: STAR*4, quality: STAR*4, capacity: STAR*1, locationQuality: STAR*2),
-            ParkingSpotRating(fenced: true, crowded: false, surveilled: false, lowCrimeRate: STAR*3, quality: STAR*4, capacity: STAR*2, locationQuality: STAR*2)
-        ]),
         ParkingSpot(coords: Coordinates(latitude: 46.495255, longitude: 11.332159), title: "vicino alla banca", ratings: [
             ParkingSpotRating(fenced: false, crowded: false, surveilled: true, lowCrimeRate: STAR*5, quality: STAR*2, capacity: STAR*3, locationQuality: STAR*5),
             ParkingSpotRating(fenced: false, crowded: false, surveilled: true, lowCrimeRate: STAR*4, quality: STAR*1, capacity: STAR*1, locationQuality: STAR*5),
             ParkingSpotRating(fenced: true, crowded: false, surveilled: false, lowCrimeRate: STAR*4, quality: STAR*3, capacity: STAR*2, locationQuality: STAR*4)
-        ])
+        ]),
+        ParkingSpot(coords: Coordinates(latitude: 46.47929, longitude: 11.33222), title: "dentro al noitechpark", ratings: [
+            ParkingSpotRating(fenced: true, crowded: true, surveilled: true, lowCrimeRate: STAR*5, quality: STAR*4, capacity: STAR*4, locationQuality: STAR*5),
+        ]),
+        ParkingSpot(coords: Coordinates(latitude: 46.48584, longitude: 11.33531), title: "prima del twenty", remarks: "consigliamo di parcheggiare qui solo per tempi molto brevi.", ratings: [
+            ParkingSpotRating(fenced: false, crowded: true, surveilled: false, lowCrimeRate: STAR*1, quality: STAR*1, capacity: STAR*2, locationQuality: STAR*5),
+        ]),
+        ParkingSpot(coords: Coordinates(latitude: 46.49302, longitude: 11.34032), title: "davanti al despar di via roma", remarks: "ci sono altri parcheggi nei dintorni, sempre del despar", ratings: [
+            ParkingSpotRating(fenced: false, crowded: true, surveilled: false, lowCrimeRate: STAR*3, quality: STAR*3, capacity: STAR*4, locationQuality: STAR*4),
+        ]),
+        ParkingSpot(coords: Coordinates(latitude: 46.496857523034734, longitude: 11.35304148578077), title: "vicino alla chiesa cappuccini", ratings: [
+            ParkingSpotRating(fenced: false, crowded: false, surveilled: false, lowCrimeRate: STAR*1, quality: STAR*1, capacity: STAR*3, locationQuality: STAR*2),
+        ]),
+        ParkingSpot(coords: Coordinates(latitude: 46.497631168614134, longitude: 11.352304343849445), title: "vicino alla chiesa domenicani", ratings: [
+            ParkingSpotRating(fenced: false, crowded: true, surveilled: false, lowCrimeRate: STAR*2, quality: STAR*5, capacity: STAR*4, locationQuality: STAR*4),
+        ]),
+        ParkingSpot(coords: Coordinates(latitude: 46.50551811701064, longitude: 11.346752873507857), title: "iis galilei e kunter", ratings: [
+            ParkingSpotRating(fenced: true, crowded: true, surveilled: false, lowCrimeRate: STAR*4, quality: STAR*5, capacity: STAR*5, locationQuality: STAR*5),
+        ]),
     ]
 }
